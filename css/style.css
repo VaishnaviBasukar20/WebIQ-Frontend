@@ -1,0 +1,162 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Body with animated gradient */
+@keyframes gradientPan {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(270deg, #0c0c1e, #1a1a30, #12122b, #0f0f1f);
+    background-size: 800% 800%;
+    animation: gradientPan 30s ease infinite;
+    color: #f0f4f8;
+}
+
+/* Particles behind chatbot */
+#bgParticles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Chatbot container */
+.chatbot-container {
+    width: 90%;
+    max-width: 800px;
+    height: 90vh;
+    background: rgba(12, 12, 30, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(37, 117, 252, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(37,117,252,0.3);
+}
+
+/* Header */
+.chatbot-header {
+    background: rgba(12, 12, 30, 0.7);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chatbot-header h1 {
+    margin: 0;
+    color: #2575fc;
+}
+.back-link {
+    position: absolute;
+    left: 20px;
+    font-size: 1.5em;
+    color: #2575fc;
+    text-decoration: none;
+}
+.back-link:hover { color: #1e5dd6; transform: translateX(-2px); }
+
+/* Chat window */
+.chat-window {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Messages */
+.message {
+    padding: 12px 18px;
+    border-radius: 12px;
+    max-width: 80%;
+    word-wrap: break-word;
+    animation: fadeIn 0.5s ease-in-out;
+}
+.bot-message {
+    background: rgba(255,255,255,0.08);
+    color: #f0f4f8;
+    align-self: flex-start;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.user-message {
+    background: #2575fc;
+    color: #fff;
+    align-self: flex-end;
+    box-shadow: 0 2px 10px rgba(37,117,252,0.4);
+}
+
+/* Input area */
+.input-area {
+    padding: 20px;
+    background: rgba(12, 12, 30, 0.7);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Inputs and buttons */
+.url-input-container, .user-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#urlInput, #userInput {
+    flex-grow: 1;
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #f0f4f8;
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+#urlInput:focus, #userInput:focus { border-color: #2575fc; box-shadow: 0 0 10px rgba(37,117,252,0.5); }
+
+/* Buttons */
+.scrape-button { background: #38a169; }
+.scrape-button:hover { background: #2f855a; }
+.reset-button { background: #a13838; }
+.reset-button:hover { background: #ab1717; }
+.send-button { background: #2575fc; }
+.send-button:hover { background: #1e5dd6; }
+.scrape-button, .send-button, .reset-button {
+    color: white; border: none; padding: 12px 20px;
+    border-radius: 8px; cursor: pointer; transition: 0.3s;
+}
+
+/* Toggle switch */
+.switch { position: relative; display: inline-block; width: 40px; height: 22px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top:0; left:0; right:0; bottom:0; background:#4a5568; border-radius:22px; transition:0.4s; }
+.slider:before { content:""; position:absolute; height:16px; width:16px; left:3px; bottom:3px; background:white; border-radius:50%; transition:0.4s; }
+input:checked + .slider { background:#38a169; }
+input:checked + .slider:before { transform: translateX(18px); }
+
+/* Animations */
+@keyframes fadeIn { from {opacity:0; transform: translateY(10px);} to {opacity:1; transform:translateY(0);} }
+
+@media (max-width: 768px) {
+    .chatbot-container { width: 100%; height: 100%; border-radius: 0; }
+    #urlInput, #userInput, .scrape-button, .send-button, .reset-button { width: 100%; margin-bottom: 10px; }
+}
